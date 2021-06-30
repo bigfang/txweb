@@ -98,6 +98,17 @@ export class StartupService {
           },
         ],
       },
+      {
+        text: 'Wisdom',
+        group: true,
+        children: [
+          {
+            text: 'Enterprise',
+            link: '/wisdom/enterprise',
+            icon: { type: 'icon', value: 'appstore' },
+          },
+        ],
+      },
     ]);
     // Can be set page suffix title, https://ng-alain.com/theme/title
     this.titleService.suffix = app.name;

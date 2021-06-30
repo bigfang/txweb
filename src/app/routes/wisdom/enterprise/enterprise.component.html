@@ -1,0 +1,42 @@
+<page-header [action]="phActionTpl">
+  <ng-template #phActionTpl>
+    <button (click)="add()" nz-button nzType="primary">新建</button>
+  </ng-template>
+</page-header>
+<nz-card>
+  <sf mode="search" [schema]="searchSchema" (formSubmit)="st.reset($event)" (formReset)="st.reset($event)"></sf>
+  <st
+    #st
+    [data]="url"
+    [columns]="columns"
+    [res]="{ reName: { list: 'data.enterprises.nodes', total: 'data.enterprises.totalCount' } }"
+    [req]="{
+      method: 'POST',
+      type: 'skip',
+      body: {
+        query:
+          'query MyQuery { \
+            enterprises(offset: 10, first: 10) { \
+              pageInfo { \
+                endCursor \
+                hasNextPage \
+                hasPreviousPage \
+                startCursor \
+              } \
+              totalCount \
+              nodes { \
+                id \
+                name \
+                registeredDate \
+                registeredPlace \
+                registeredCapital \
+                legalPerson \
+                legalPersonPhone \
+              } \
+            } \
+          } \
+        '
+      }
+    }"
+  ></st>
+</nz-card>
